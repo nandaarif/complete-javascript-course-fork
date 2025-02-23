@@ -1,0 +1,136 @@
+Untuk mendorong (push) folder ke GitHub, kamu perlu mengikuti langkah-langkah berikut:
+
+### 1. **Buat Repository di GitHub**
+   - Masuk ke akun GitHub kamu.
+   - Klik ikon `+` di sudut kanan atas dan pilih `New repository`.
+   - Isi nama repository dan deskripsi (opsional).
+   - Klik `Create repository`.
+
+### 2. **Persiapkan Folder di Komputer**
+   - Buka terminal (atau Command Prompt di Windows).
+   - Arahkan ke folder yang ingin kamu push dengan perintah `cd`:
+     ```
+     cd path/to/your/folder
+     ```
+
+### 3. **Inisialisasi Git di Folder**
+   - Jika folder belum diinisialisasi sebagai repositori git, jalankan perintah:
+     ```
+     git init
+     ```
+   - Menambahkan file ke staging area:
+     ```
+     git add .
+     ```
+
+### 4. **Commit Perubahan**
+   - Setelah menambahkan file, commit perubahan tersebut:
+     ```
+     git commit -m "Initial commit"
+     ```
+
+### 5. **Hubungkan Repository Lokal dengan Repository GitHub**
+   - Salin URL repository GitHub yang baru kamu buat. Biasanya dalam format:
+     ```
+     https://github.com/username/repository-name.git
+     ```
+   - Hubungkan repository lokal ke repository GitHub dengan perintah:
+     ```
+     git remote add origin https://github.com/username/repository-name.git
+     ```
+
+### 6. **Push ke GitHub**
+   - Sekarang, dorong perubahan ke GitHub dengan perintah:
+     ```
+     git push -u origin master
+     ```
+
+   > Jika branch utama GitHub kamu bernama `main` (bukan `master`), gunakan perintah berikut:
+   ```
+   git push -u origin main
+   ```
+
+Setelah itu, folder dan file kamu akan ada di GitHub!
+
+Masalah yang kamu hadapi disebabkan oleh ketidakcocokan kepemilikan direktori antara user yang menjalankan Git dan direktori yang sedang dikerjakan. Git mendeteksi bahwa folder tersebut dimiliki oleh pengguna lain yang berbeda dengan pengguna yang sedang aktif saat ini.
+
+Untuk mengatasi masalah ini, kamu bisa mengikuti langkah-langkah berikut:
+
+### 1. **Menambahkan Direktori sebagai Direktori Aman**
+Kamu bisa memberi tahu Git bahwa folder tersebut aman dengan menjalankan perintah berikut:
+
+```bash
+git config --global --add safe.directory 'E:/KODING/Belajar dari Udemy'
+```
+
+Perintah ini akan menambahkan folder tersebut ke daftar direktori yang dianggap aman oleh Git, meskipun kepemilikannya berbeda.
+
+### 2. **Cek Pengaturan Git Setelah Menambahkan Direktori Aman**
+Setelah menambahkan direktori sebagai aman, kamu bisa memverifikasi apakah sudah ditambahkan dengan perintah:
+
+```bash
+git config --global --get-all safe.directory
+```
+
+Ini akan menunjukkan semua direktori yang telah ditambahkan sebagai aman.
+
+Setelah melakukan ini, kamu bisa mencoba lagi untuk melakukan `git add .` tanpa masalah.
+
+
+Perbedaan antara dua opsi tersebut adalah terkait dengan apakah kamu membuat repository baru atau mendorong repository yang sudah ada ke GitHub. Berikut penjelasan lebih rinci:
+
+### 1. **"…or create a new repository on the command line"**
+   - **Tujuan**: Digunakan ketika kamu **belum memiliki repository lokal**, dan ingin memulai proyek baru di GitHub.
+   - **Langkah-langkah**:
+     - Kamu memulai dengan inisialisasi repository baru di komputer lokal dengan `git init`.
+     - Setelah itu, kamu menambahkan file, melakukan commit, dan kemudian menghubungkan repository lokal dengan repository GitHub yang baru dibuat.
+   - **Contoh Perintah**:
+     ```bash
+     git init
+     git add .
+     git commit -m "Initial commit"
+     git branch -M main
+     git remote add origin https://github.com/username/repository-name.git
+     git push -u origin main
+     ```
+
+   Jadi, ini untuk **membuat repository baru** dari awal.
+
+### 2. **"…or push an existing repository from the command line"**
+   - **Tujuan**: Digunakan ketika kamu sudah memiliki **repository Git lokal yang ada** dan ingin mendorongnya ke GitHub.
+   - **Langkah-langkah**:
+     - Jika sudah memiliki repository lokal yang telah diinisialisasi (dengan `git init` sebelumnya) dan sudah ada file serta commit, kamu hanya perlu menghubungkan repository lokal dengan repository GitHub yang sudah ada.
+   - **Contoh Perintah**:
+     ```bash
+     git remote add origin https://github.com/username/repository-name.git
+     git push -u origin main
+     ```
+
+   Jadi, ini untuk **menyinkronkan repository lokal yang sudah ada** dengan repository GitHub yang sudah ada.
+
+### Ringkasan
+- **"Create a new repository"**: Untuk memulai proyek baru, kamu buat repository baru di GitHub dan di komputer lokal.
+- **"Push an existing repository"**: Untuk mendorong (push) repository yang sudah ada di komputer lokal ke repository GitHub yang baru atau sudah ada.
+
+Jika kamu sudah memiliki folder atau proyek yang diinginkan, kamu menggunakan opsi "push an existing repository". Jika kamu memulai proyek baru, maka pilih "create a new repository".
+
+
+Masalah yang kamu hadapi terjadi karena PowerShell menganggap kata "Punya Sendiri" sebagai dua argumen terpisah karena ada spasi di dalam nama folder. Untuk mengatasinya, kamu bisa menggunakan tanda kutip (") untuk menyertakan seluruh path folder tersebut sebagai satu argumen.
+
+Berikut adalah cara yang benar untuk melakukannya:
+
+### 1. **Gunakan Tanda Kutip untuk Nama Folder dengan Spasi**
+Coba jalankan perintah berikut:
+
+```powershell
+cd "Punya Sendiri"
+```
+
+### 2. **Alternatif dengan Escape Character (backslash)**
+Kamu juga bisa menggunakan escape character (`\`) untuk mengatasi spasi, seperti ini:
+
+```powershell
+cd Punya` Sendiri
+```
+
+Kedua cara ini akan memungkinkan kamu untuk masuk ke folder yang bernama "Punya Sendiri". Coba salah satu dari metode tersebut dan lihat apakah masalahnya teratasi!
