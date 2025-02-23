@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Course Goals</h1>
+    </header>
+    <section id="user-goals">
+      <!-- v-show ini berfungsi berdiri sendiri -->
+      <!-- kalo menggunakan v-show saat di inspect element daftar tidak berurutan -->
+      <h2>My course goals</h2>
+      <input type="text" v-model="enteredGoalValue"/>
+      <button @click="addGoal">Add Goal</button>
+      <p v-if="goals.length === 0">No goals have been added yet - please start adding some!</p>
+      <ul v-else>
+        <!-- in itu memiliki tujuan dalam tujuan -->
+        <!-- of itu memiliki sasaran dalam sasaran -->
+        <li v-for="(index, goal) in goals">{{ goal }} - {{ index }} </li>
+      </ul>
+      <!-- <ul>
+        <li v-for="num in 1">{{num}}</li>
+      </ul> -->
+      <!-- <ul>
+        <li v-for="(index, value, key) in {name: 'naul', age: 20}"> {{ key }}: {{ value }} - {{ index }} </li>
+      </ul> -->
+    </section>
+    <!-- apa bedanya v-if dan v-show -->
+    <!-- v-if jika benar menghapus dan menambahkan elemen dari dan ke dom -->
+    <!-- v-show hanya menyembunyikan dan menampilkan item dengan CSS -->
+  </body>
+</html>

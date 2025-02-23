@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+      .coba{
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Course Goals</h1>
+    </header>
+
+    <section id="user-goal">
+
+      <h2>My Course Goal</h2>
+      <!-- DIBAWAH INI ADALAH CARA DOM -->
+      <p>{{ coba1 }}</p>
+
+      <!-- dibawah ini menggunakan v-html kurang di sarankan -->
+      <p class="coba" v-html="coba3"></p>
+
+      <!-- DIBAWAH INI ADALAH CARA DOM Terbaru -->
+      <p>Selamat datang di latihan  <a href="https://www.kaskus.co.id/" target="_blank">Open Kaskus</a></p>
+
+      <!-- DIBAWAH INI ADALAH CARA DOM Lama-->
+      <p>selamat datang <a v-bind:href="coba2" target="_blank">Open Youtube</a></p>
+
+      <!-- menggunakan methods -->
+      <p> {{ outputGoal() }}</p>
+      
+    </section>
+
+
+    <script src="app.js"></script>
+  </body>
+  </html>
+  
+  
