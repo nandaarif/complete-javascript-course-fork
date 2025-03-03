@@ -134,3 +134,157 @@ cd Punya` Sendiri
 ```
 
 Kedua cara ini akan memungkinkan kamu untuk masuk ke folder yang bernama "Punya Sendiri". Coba salah satu dari metode tersebut dan lihat apakah masalahnya teratasi!
+
+
+###  **Tutorial ngambil branch atau git pull**
+
+```
+
+Pesan error **"Cannot fork because you own this repository and are not a member of any organizations"** muncul ketika kamu mencoba untuk *fork* repositori yang sudah kamu miliki di GitHub, dan GitHub melarangnya. Ini terjadi karena GitHub memiliki aturan yang menyatakan bahwa jika kamu adalah pemilik dari repositori tersebut (atau repositori yang kamu coba *fork* adalah repositori milikmu), kamu tidak bisa melakukan *fork* repositori itu lagi ke dalam akun yang sama.
+
+### Penjelasan Kenapa Ini Terjadi:
+GitHub membatasi pengguna untuk tidak *fork* repositori milik mereka sendiri karena repositori yang sudah kamu miliki sudah dianggap sebagai salinan repositori tersebut. Sebagai pemilik, kamu sudah bisa melakukan perubahan langsung di repositori itu tanpa perlu melakukan *fork*. 
+
+Namun, GitHub memberikan fleksibilitas jika kamu ingin membuat repositori baru yang terhubung dengan repositori yang sama, baik untuk tujuan eksperimen, pengembangan fitur baru, atau lainnya. 
+
+### Solusi Mengatasi Masalah Ini:
+
+Ada beberapa solusi yang bisa kamu coba:
+
+#### 1. **Buat Repositori Baru (Manual Clone)**
+   - Kamu bisa **menyalin repositori (clone)** ke dalam akun baru atau ke repositori lain yang kamu buat secara manual.
+     1. **Clone repositori asli** (dari akun kamu) ke komputer kamu:
+        ```bash
+        git clone https://github.com/username/nama-repositori.git
+        ```
+     2. **Buat repositori baru di GitHub** (repositori kosong).
+     3. **Push repositori yang sudah di-clone** ke repositori baru di GitHub:
+        ```bash
+        cd nama-repositori
+        git remote set-url origin https://github.com/username/nama-repositori-baru.git
+        git push -u origin main
+        ```
+
+   Dengan cara ini, kamu bisa menyimpan salinan repositori yang kamu miliki di repositori baru tanpa menggunakan *fork*.
+
+#### 2. **Gunakan Akun GitHub Lain**
+   Jika kamu benar-benar perlu *fork* repositori milikmu sendiri, kamu bisa mencoba untuk melakukan *fork* repositori tersebut menggunakan akun GitHub yang berbeda. Cukup buat akun GitHub baru, lakukan *fork* repositori dari akun asli kamu ke akun baru, dan kemudian kamu bisa melakukan perubahan di repositori fork tersebut.
+
+#### 3. **Gunakan Organisasi (Jika Ada)**
+   Jika kamu bekerja dalam sebuah organisasi, kamu bisa memindahkan repositori tersebut ke dalam organisasi. Setelah repositori dipindahkan ke organisasi, kamu bisa melakukan *fork* repositori tersebut di akun pribadi kamu, karena repositori yang dimiliki oleh organisasi tidak terbatas oleh aturan yang sama dengan repositori milik pribadi.
+
+   Untuk memindahkan repositori ke organisasi:
+   1. Buka repositori yang ingin kamu pindahkan.
+   2. Pilih **Settings** > **Transfer**.
+   3. Ikuti langkah-langkah untuk memindahkan repositori ke organisasi.
+
+#### 4. **Buat Salinan dengan Menyalin Kode**
+   Jika tidak ingin melakukan hal-hal di atas, kamu juga bisa membuat salinan manual dari kode repositori dengan mengunduhnya (Download ZIP) dan membuat repositori baru. Caranya:
+   1. Unduh repositori asal dengan klik **Code** > **Download ZIP**.
+   2. Buat repositori baru di GitHub.
+   3. Upload file yang telah kamu unduh ke repositori baru tersebut.
+
+### Mengapa GitHub Mengatur Begitu:
+Aturan ini dibuat untuk menghindari masalah duplikasi repositori yang tidak perlu. Misalnya, jika kamu sudah memiliki repositori, membuat *fork* lagi dari repositori itu ke akun yang sama akan menghasilkan repositori yang identik, yang tidak memberikan nilai tambah bagi pengelolaan repositori.
+
+Jika kamu memiliki pertanyaan lebih lanjut atau butuh penjelasan lebih dalam, jangan ragu untuk bertanya!
+
+
+
+
+Saat kamu melakukan *fork* repositori di GitHub, memang secara default yang akan di-*fork* hanya branch utama (biasanya `master` atau `main`), dan bukan seluruh branch yang ada di repositori asal. Namun, kamu masih bisa mengakses semua branch yang ada di repositori asli setelah melakukan *fork*, dengan cara berikut:
+
+### Langkah untuk Mendapatkan Semua Branch setelah Fork:
+
+1. **Fork Repositori**  
+   Seperti yang telah dibahas sebelumnya, kamu *fork* repositori asli.
+
+2. **Clone Forked Repositori ke Komputer**  
+   Setelah fork selesai, clone repositori yang sudah kamu *fork* ke komputer menggunakan perintah berikut:
+   ```bash
+   git clone https://github.com/username/complete-javascript-course.git
+   ```
+   Gantilah `username` dengan nama akun GitHub kamu.
+
+3. **Akses Semua Branch Asli**  
+   Setelah kamu meng-clone repositori, kamu bisa menambahkan *remote* baru yang mengarah ke repositori asli (untuk memastikan kamu bisa mendapatkan semua branch dari repositori asli). Jalankan perintah berikut di terminal:
+
+   ```bash
+   git remote add upstream https://github.com/jonasschmedtmann/complete-javascript-course.git
+   ```
+
+   Ini akan menambahkan repositori asli sebagai remote dengan nama `upstream`.
+
+4. **Ambil Semua Data dari Remote Asli**  
+   Untuk mendapatkan semua branch dari repositori asli, jalankan perintah berikut:
+   ```bash
+   git fetch upstream
+   ```
+
+   Perintah ini akan mengambil semua data, termasuk branch yang ada di repositori asli.
+
+5. **Lihat Daftar Branch**  
+   Setelah kamu fetch data dari repositori asli, kamu bisa melihat daftar semua branch dengan perintah:
+   ```bash
+   git branch -a
+   ```
+
+   Ini akan menampilkan semua branch, baik yang ada di fork kamu maupun yang ada di repositori asli (dengan nama seperti `remotes/upstream/branch-name`).
+
+6. **Checkout Branch dari Upstream**  
+   Jika kamu ingin beralih ke branch tertentu yang ada di repositori asli (upstream), kamu bisa melakukannya dengan perintah:
+   ```bash
+   git checkout -b nama-branch upstream/nama-branch
+   ```
+
+   Gantilah `nama-branch` dengan nama branch yang ingin kamu cek.
+
+7. **Push ke Fork (Jika Diperlukan)**  
+   Jika kamu membuat perubahan di branch baru ini dan ingin menguploadnya kembali ke GitHub, kamu bisa melakukan *push* ke fork kamu dengan perintah:
+   ```bash
+   git push origin nama-branch
+   ```
+
+Dengan langkah-langkah ini, kamu bisa mendapatkan semua branch yang ada di repositori asli meskipun saat pertama kali *fork* hanya branch utama yang ikut.
+
+Semoga membantu! Ada hal lain yang ingin ditanyakan tentang proses ini?
+
+
+
+
+Untuk melakukan *fork* repositori GitHub yang ada di link tersebut, berikut langkah-langkah yang bisa kamu ikuti:
+
+1. **Masuk ke Akun GitHub**  
+   Pastikan kamu sudah memiliki akun GitHub dan sudah login.
+
+2. **Buka Link Repositori**  
+   Arahkan browser kamu ke link repositori yang ingin di-*fork*:  
+   [https://github.com/jonasschmedtmann/complete-javascript-course](https://github.com/jonasschmedtmann/complete-javascript-course)
+
+3. **Klik Tombol Fork**  
+   Di bagian kanan atas halaman repositori, kamu akan melihat tombol berlabel “Fork”. Klik tombol tersebut.
+
+4. **Pilih Akun atau Organisasi**  
+   Jika kamu memiliki lebih dari satu akun atau organisasi di GitHub, GitHub akan menanyakan tempat untuk menyimpan fork ini. Pilih akun atau organisasi yang diinginkan, lalu klik "Create fork".
+
+5. **Proses Forking**  
+   GitHub akan mulai menyalin repositori tersebut ke akun kamu. Proses ini biasanya hanya memakan waktu beberapa detik.
+
+6. **Akses Fork di Akun Kamu**  
+   Setelah selesai, kamu akan diarahkan ke repositori fork yang baru saja kamu buat, yang akan terlihat seperti repositori aslinya, tetapi dengan nama repositori diikuti dengan nama akun GitHub kamu. Misalnya:  
+   `https://github.com/username/complete-javascript-course`
+
+7. **Clone Fork ke Komputer (Opsional)**  
+   Jika kamu ingin mengerjakan repositori di komputer, kamu dapat melakukan *clone* repositori yang telah kamu fork. Klik tombol “Code” di halaman repositori fork, lalu salin URL yang ditampilkan (HTTPS atau SSH). Setelah itu, buka terminal di komputer dan jalankan perintah berikut:
+   ```bash
+   git clone https://github.com/username/complete-javascript-course.git
+   ```
+   Gantilah `username` dengan nama pengguna GitHub kamu.
+
+8. **Mulai Berkontribusi**  
+   Setelah repositori di-*fork* dan di-clone, kamu bisa mulai mengedit file, menambahkan perubahan, dan melakukan commit. Jika ingin menyimpan perubahan kamu kembali ke GitHub, lakukan langkah-langkah berikut:
+   - **Stage perubahan**: `git add .`
+   - **Commit perubahan**: `git commit -m "Deskripsi perubahan"`
+   - **Push perubahan ke GitHub**: `git push origin main`
+
+Itulah cara untuk *fork* repositori GitHub dan mulai bekerja dengan salinan repositori tersebut! Apakah kamu sudah pernah melakukan hal serupa sebelumnya, atau ini pertama kalinya?
