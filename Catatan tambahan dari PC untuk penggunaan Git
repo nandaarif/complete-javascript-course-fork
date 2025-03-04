@@ -53,7 +53,7 @@ Untuk mendorong (push) folder ke GitHub, kamu perlu mengikuti langkah-langkah be
 Setelah itu, folder dan file kamu akan ada di GitHub!
 
 Masalah yang kamu hadapi disebabkan oleh ketidakcocokan kepemilikan direktori antara user yang menjalankan Git dan direktori yang sedang dikerjakan. Git mendeteksi bahwa folder tersebut dimiliki oleh pengguna lain yang berbeda dengan pengguna yang sedang aktif saat ini.
-
+ 
 Untuk mengatasi masalah ini, kamu bisa mengikuti langkah-langkah berikut:
 
 ### 1. **Menambahkan Direktori sebagai Direktori Aman**
